@@ -5,5 +5,5 @@ import me.moallemi.sixt.data.entity.CarEntity
 
 interface CarRemoteDataSource {
 
-    fun getLatestCars(): Single<List<CarEntity>>
+    fun getCars(): Single<List<CarEntity>>
 }
