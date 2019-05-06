@@ -5,7 +5,7 @@ ext {
             targetSdkVersion : 28
     ]
     libraries = [
-            appCompat        : "1.0.2",
+            appCompat       : "1.0.2",
             coreKtx         : "1.0.1",
             constraintLayout: "2.0.0-alpha5",
             room            : "2.0.0",
@@ -26,8 +26,9 @@ ext {
     ]
 
     testLibraries = [
-            junit              : "4.12",
-            androidXTestRunner : "1.1.0",
-            espresso           : "3.1.0"
+            junit             : "4.12",
+            androidXTestRunner: "1.1.0",
+            espresso          : "3.1.0",
+            mockk             : "1.9.3"
     ]
 }
