@@ -15,4 +15,5 @@ dependencies {
 
     testImplementation "junit:junit:$testLibraries.junit"
     testImplementation "io.mockk:mockk:$testLibraries.mockk"
+    testImplementation "com.squareup.retrofit2:retrofit-mock:$libraries.retrofit"
 }
