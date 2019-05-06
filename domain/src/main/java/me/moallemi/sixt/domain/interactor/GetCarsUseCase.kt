@@ -1,8 +1,9 @@
-package me.moallemi.sixt.domain.interactor.base
+package me.moallemi.sixt.domain.interactor
 
 import io.reactivex.Single
 import me.moallemi.sixt.domain.executor.PostExecutionThread
 import me.moallemi.sixt.domain.executor.UseCaseExecutorThread
+import me.moallemi.sixt.domain.interactor.base.SingleUseCase
 import me.moallemi.sixt.domain.model.Car
 import me.moallemi.sixt.domain.repository.CarRepository
 import javax.inject.Inject
