@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion buildVersions.compileSdkVersion
@@ -27,6 +28,11 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$libraries.appCompat"
     implementation "androidx.core:core-ktx:$libraries.coreKtx"
     implementation "androidx.constraintlayout:constraintlayout:$libraries.constraintLayout"
+
+    implementation "com.google.dagger:dagger:$libraries.dagger"
+    kapt "com.google.dagger:dagger-compiler:$libraries.dagger"
+    implementation "com.google.dagger:dagger-android-support:$libraries.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$libraries.dagger"
 
     testImplementation "junit:junit:$testLibraries.junit"
     androidTestImplementation "androidx.test:runner:$testLibraries.androidXTestRunner"

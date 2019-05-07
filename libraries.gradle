@@ -12,7 +12,7 @@ ext {
             okHttp          : "3.12.2",
             rxJava          : "2.2.8",
             rxAndroid       : "2.1.1",
-            dagger          : "2.19",
+            dagger          : "2.22.1",
             lifecycle       : "2.0.0",
             materialDesign  : "1.0.0",
             navigation      : "2.0.0",
