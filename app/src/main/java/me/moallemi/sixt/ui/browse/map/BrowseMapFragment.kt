@@ -1,5 +1,6 @@
 package me.moallemi.sixt.ui.browse.map
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,10 +18,14 @@ import me.moallemi.sixt.extension.observe
 import me.moallemi.sixt.model.Resource
 import me.moallemi.sixt.model.ResourceState
 import me.moallemi.sixt.ui.base.BaseFragment
+import pub.devrel.easypermissions.AfterPermissionGranted
+import pub.devrel.easypermissions.EasyPermissions
+import pub.devrel.easypermissions.PermissionRequest
 
 class BrowseMapFragment : BaseFragment() {
 
     private lateinit var viewModel: BrowseMapViewModel
+    private var locationPermissionGranted = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_browse_map, container, false)
@@ -31,19 +36,8 @@ class BrowseMapFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mapView.onCreate(savedInstanceState)
-        mapView.onResume()
-        try {
-            MapsInitializer.initialize(requireContext())
-        } catch (_: Exception) {
-        }
 
-        mapView.getMapAsync { googleMap ->
-            googleMap.isMyLocationEnabled = true
-
-            val sydney = LatLng(48.1351, 11.5820)
-            val cameraPosition = CameraPosition.Builder().target(sydney).zoom(15f).build()
-            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-        }
+        initMap()
     }
 
     override fun onResume() {
@@ -69,10 +63,30 @@ class BrowseMapFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        checkPermissions(REQUEST_LOCATION_FOR_INIT_MAP)
+
         viewModel = createViewModel(viewModelFactory) {
             observe(cars, ::handleStates)
         }
         viewModel.load()
+    }
+
+    @AfterPermissionGranted(REQUEST_LOCATION_FOR_INIT_MAP)
+    @SuppressLint("MissingPermission")
+    private fun initMap() {
+        mapView.onResume()
+        try {
+            MapsInitializer.initialize(requireContext())
+        } catch (_: Exception) {
+        }
+
+        mapView.getMapAsync { googleMap ->
+            googleMap.uiSettings.isMyLocationButtonEnabled = false
+
+            val munich = LatLng(48.1351, 11.5820)
+            val cameraPosition = CameraPosition.Builder().target(munich).zoom(15f).build()
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        }
     }
 
     private fun handleStates(resource: Resource<List<Car>>?) {
@@ -138,7 +152,30 @@ class BrowseMapFragment : BaseFragment() {
         errorView.visibility = View.VISIBLE
     }
 
+    private fun checkPermissions(requestCodeFor: Int) {
+        val perms = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+        if (EasyPermissions.hasPermissions(requireContext(), *perms)) {
+            locationPermissionGranted = true
+        } else {
+            locationPermissionGranted = false
+            EasyPermissions.requestPermissions(
+                PermissionRequest.Builder(this, requestCodeFor, *perms)
+                    .setRationale(R.string.location_rationale)
+                    .setPositiveButtonText(R.string.ok)
+                    .setNegativeButtonText(R.string.cancel)
+                    .build()
+            )
+        }
+    }
+
+    override fun onPermissionsGranted(requestCode: Int, list: List<String>) {
+        super.onPermissionsGranted(requestCode, list)
+
+        locationPermissionGranted = true
+    }
+
     companion object {
+        private const val REQUEST_LOCATION_FOR_INIT_MAP = 162
         fun getInstance() = BrowseMapFragment()
     }
 }
