@@ -21,13 +21,14 @@ import me.moallemi.sixt.extension.observe
 import me.moallemi.sixt.model.Resource
 import me.moallemi.sixt.model.ResourceState
 import me.moallemi.sixt.ui.base.BaseFragment
+import me.moallemi.sixt.ui.browse.list.BrowseViewModel
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
 
 class BrowseMapFragment : BaseFragment() {
 
-    private lateinit var viewModel: BrowseMapViewModel
+    private lateinit var viewModel: BrowseViewModel
     private var locationPermissionGranted = false
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -162,7 +163,7 @@ class BrowseMapFragment : BaseFragment() {
         hideLoading()
         hideEmptyView()
         showErrorView()
-        // showSnackBar(failure.message)
+        // TODO showSnackBar(failure.message)
     }
 
     private fun showEmptyView() {

@@ -53,6 +53,8 @@ dependencies {
     implementation "pub.devrel:easypermissions:$libraries.easypermissions"
 
     testImplementation "junit:junit:$testLibraries.junit"
+    testImplementation "io.mockk:mockk:$testLibraries.mockk"
+    testImplementation "android.arch.core:core-testing:$testLibraries.coreTesting"
     androidTestImplementation "androidx.test:runner:$testLibraries.androidXTestRunner"
     androidTestImplementation "androidx.test.espresso:espresso-core:$testLibraries.espresso"
 }

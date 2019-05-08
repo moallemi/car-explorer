@@ -29,6 +29,7 @@ ext {
 
     testLibraries = [
             junit             : "4.12",
+            coreTesting       : "1.1.1",
             androidXTestRunner: "1.1.0",
             espresso          : "3.1.0",
             mockk             : "1.9.3"

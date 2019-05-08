@@ -11,9 +11,8 @@ import me.moallemi.sixt.di.annotation.ViewModelKey
 import me.moallemi.sixt.domain.repository.CarRepository
 import me.moallemi.sixt.remote.datasource.CarRemoteDataSourceImpl
 import me.moallemi.sixt.ui.browse.list.BrowseListFragment
-import me.moallemi.sixt.ui.browse.list.BrowseListViewModel
+import me.moallemi.sixt.ui.browse.list.BrowseViewModel
 import me.moallemi.sixt.ui.browse.map.BrowseMapFragment
-import me.moallemi.sixt.ui.browse.map.BrowseMapViewModel
 
 @Module
 abstract class BrowseModule {
@@ -26,13 +25,8 @@ abstract class BrowseModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(BrowseListViewModel::class)
-    abstract fun bindBrowseListViewModel(browseListViewModel: BrowseListViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(BrowseMapViewModel::class)
-    abstract fun bindBrowseMapViewModel(browseMapViewModel: BrowseMapViewModel): ViewModel
+    @ViewModelKey(BrowseViewModel::class)
+    abstract fun bindBrowseListViewModel(browseViewModel: BrowseViewModel): ViewModel
 
     @Binds
     abstract fun bindCarRepository(carRepositoryImpl: CarRepositoryImpl): CarRepository

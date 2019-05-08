@@ -9,7 +9,7 @@ import me.moallemi.sixt.domain.model.Car
 import me.moallemi.sixt.ui.base.BaseViewModel
 import javax.inject.Inject
 
-class BrowseListViewModel @Inject constructor(private val getCarsUseCase: GetCarsUseCase) : BaseViewModel() {
+class BrowseViewModel @Inject constructor(private val getCarsUseCase: GetCarsUseCase) : BaseViewModel() {
 
     private val _cars = MutableLiveData<Resource<List<Car>>>()
     val cars: LiveData<Resource<List<Car>>> = _cars

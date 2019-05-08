@@ -16,7 +16,7 @@ import me.moallemi.sixt.ui.base.BaseFragment
 
 class BrowseListFragment : BaseFragment() {
 
-    private lateinit var viewModel: BrowseListViewModel
+    private lateinit var viewModel: BrowseViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_browse_list, container, false)
@@ -86,7 +86,7 @@ class BrowseListFragment : BaseFragment() {
         hideLoading()
         hideEmptyView()
         showErrorView()
-        // showSnackBar(failure.message)
+        // TODO showSnackBar(failure.message)
     }
 
     private fun showEmptyView() {
