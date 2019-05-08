@@ -1,7 +1,8 @@
-package me.moallemi.sixt
+package me.moallemi.sixt.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import me.moallemi.sixt.R
 
 class MainActivity : AppCompatActivity() {
 
