@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapsInitializer
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_browse_map.*
 import me.moallemi.sixt.R
 import me.moallemi.sixt.domain.model.Car
@@ -133,7 +135,21 @@ class BrowseMapFragment : BaseFragment() {
             hideErrorView()
             showEmptyView()
         } else {
-// TODO
+            initMarkers(data)
+        }
+    }
+
+    private fun initMarkers(data: List<Car>) {
+        mapView.getMapAsync { googleMap ->
+            data.filter { car -> car.latitude != null && car.longitude != null }
+                .forEach { car ->
+                    googleMap.addMarker(
+                        MarkerOptions()
+                            .position(LatLng(car.latitude!!, car.longitude!!))
+                            .title(car.modelName)
+                            .icon(BitmapDescriptorFactory.defaultMarker())
+                    )
+                }
         }
     }
 
