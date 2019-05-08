@@ -1,7 +1,7 @@
 package me.moallemi.sixt.remote.dto
 
-import junit.framework.Assert.assertEquals
 import me.moallemi.sixt.remote.datasource.CarFactory
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class MappersTest {
