@@ -11,6 +11,7 @@ android {
         targetSdkVersion buildVersions.targetSdkVersion
         versionCode 1
         versionName "1.0.0"
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -30,6 +31,7 @@ dependencies {
     implementation project(':remote')
 
     implementation "androidx.appcompat:appcompat:$libraries.appCompat"
+    implementation "com.google.android.material:material:$libraries.materialDesign"
     implementation "androidx.core:core-ktx:$libraries.coreKtx"
     implementation "androidx.constraintlayout:constraintlayout:$libraries.constraintLayout"
     implementation "androidx.lifecycle:lifecycle-extensions:$libraries.lifecycle"
@@ -40,6 +42,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$libraries.dagger"
 
     implementation "io.reactivex.rxjava2:rxandroid:$libraries.rxAndroid"
+    implementation "com.squareup.picasso:picasso:$libraries.picasso"
 
     testImplementation "junit:junit:$testLibraries.junit"
     androidTestImplementation "androidx.test:runner:$testLibraries.androidXTestRunner"
