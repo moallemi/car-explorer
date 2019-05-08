@@ -11,6 +11,7 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.fragment_browse_map.*
 import me.moallemi.sixt.R
@@ -140,6 +141,7 @@ class BrowseMapFragment : BaseFragment() {
     }
 
     private fun initMarkers(data: List<Car>) {
+        val latLngBoundsBuilder = LatLngBounds.builder()
         mapView.getMapAsync { googleMap ->
             data.filter { car -> car.latitude != null && car.longitude != null }
                 .forEach { car ->
@@ -149,7 +151,10 @@ class BrowseMapFragment : BaseFragment() {
                             .title(car.modelName)
                             .icon(BitmapDescriptorFactory.defaultMarker())
                     )
+                    latLngBoundsBuilder.include(LatLng(car.latitude!!, car.longitude!!))
                 }
+            val latLngBounds = latLngBoundsBuilder.build()
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(latLngBounds, 100))
         }
     }
 
