@@ -28,10 +28,13 @@ class CarListAdapter(private val items: List<Car>) : RecyclerView.Adapter<CarLis
 
     class CarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val modelName = itemView.findViewById<TextView>(R.id.modelName)
+        private val info = itemView.findViewById<TextView>(R.id.info)
         private val image = itemView.findViewById<ImageView>(R.id.image)
 
         fun bind(car: Car) {
             modelName.text = car.modelName
+            // TODO can be handled better e.g use "Auto" instead of "A" for transmission by using a mapper
+            info.text = "${car.make} | ${car.transmission} | ${car.fuelType} | ${car.innerCleanliness}"
             image.load(car.carImageUrl, R.drawable.ic_directions_car_black_24dp)
         }
     }
