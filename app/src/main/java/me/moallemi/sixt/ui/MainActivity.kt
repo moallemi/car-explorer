@@ -3,7 +3,7 @@ package me.moallemi.sixt.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import me.moallemi.sixt.R
-import me.moallemi.sixt.ui.browse.list.BrowseListFragment
+import me.moallemi.sixt.ui.browse.map.BrowseMapFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportFragmentManager?.beginTransaction()
-            ?.replace(R.id.contentFrame, BrowseListFragment.getInstance())
+            ?.replace(R.id.contentFrame, BrowseMapFragment.getInstance())
             ?.commit()
     }
 }

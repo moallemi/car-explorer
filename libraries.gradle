@@ -22,7 +22,9 @@ ext {
             crashlytics     : "2.9.9",
             javax_inject    : "1",
             picasso         : "2.71828",
-            retrofit        : "2.5.0"
+            retrofit        : "2.5.0",
+            google_maps     : "16.1.0",
+            google_location : "16.0.0"
     ]
 
     testLibraries = [

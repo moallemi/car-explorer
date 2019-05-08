@@ -1,11 +1,15 @@
-package me.moallemi.sixt.ui.browse.list
+package me.moallemi.sixt.ui.browse.map
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.fragment_browse_list.*
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.MapsInitializer
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.fragment_browse_map.*
 import me.moallemi.sixt.R
 import me.moallemi.sixt.domain.model.Car
 import me.moallemi.sixt.extension.createViewModel
@@ -14,12 +18,52 @@ import me.moallemi.sixt.model.Resource
 import me.moallemi.sixt.model.ResourceState
 import me.moallemi.sixt.ui.base.BaseFragment
 
-class BrowseListFragment : BaseFragment() {
+class BrowseMapFragment : BaseFragment() {
 
-    private lateinit var viewModel: BrowseListViewModel
+    private lateinit var viewModel: BrowseMapViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_browse_list, container, false)
+        return inflater.inflate(R.layout.fragment_browse_map, container, false)
+    }
+
+    @SuppressLint("MissingPermission")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mapView.onCreate(savedInstanceState)
+        mapView.onResume()
+        try {
+            MapsInitializer.initialize(requireContext())
+        } catch (_: Exception) {
+        }
+
+        mapView.getMapAsync { googleMap ->
+            googleMap.isMyLocationEnabled = true
+
+            val sydney = LatLng(48.1351, 11.5820)
+            val cameraPosition = CameraPosition.Builder().target(sydney).zoom(15f).build()
+            googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mapView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mapView.onPause()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mapView.onDestroy()
+    }
+
+    override fun onLowMemory() {
+        super.onLowMemory()
+        mapView.onLowMemory()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -75,10 +119,7 @@ class BrowseListFragment : BaseFragment() {
             hideErrorView()
             showEmptyView()
         } else {
-            with(recyclerView) {
-                layoutManager = LinearLayoutManager(requireContext())
-                adapter = CarListAdapter(data)
-            }
+// TODO
         }
     }
 
@@ -98,6 +139,6 @@ class BrowseListFragment : BaseFragment() {
     }
 
     companion object {
-        fun getInstance() = BrowseListFragment()
+        fun getInstance() = BrowseMapFragment()
     }
 }
