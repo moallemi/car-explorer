@@ -4,4 +4,6 @@
     <string name="location_rationale">In order to use map we need location access</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
 </resources>
