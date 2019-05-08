@@ -4,8 +4,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
+import me.moallemi.sixt.di.scope.AppScope
 import me.moallemi.sixt.remote.api.CarService
-import me.moallemi.sixt.di.scope.NetworkScope
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit
 class NetworkModule {
 
     @Provides
-    @NetworkScope
+    @AppScope
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(60, TimeUnit.SECONDS)
@@ -26,19 +26,19 @@ class NetworkModule {
     }
 
     @Provides
-    @NetworkScope
+    @AppScope
     fun provideGson(): Gson {
         return GsonBuilder().create()
     }
 
     @Provides
-    @NetworkScope
+    @AppScope
     fun provideGsonConvertorFactory(gson: Gson): GsonConverterFactory {
         return GsonConverterFactory.create(gson)
     }
 
     @Provides
-    @NetworkScope
+    @AppScope
     fun provideRetrofit(okHttpClient: OkHttpClient, gsonConverterFactory: GsonConverterFactory): Retrofit {
         return Retrofit.Builder()
             .baseUrl(CarService.BASE_URL)

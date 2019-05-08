@@ -6,7 +6,9 @@ import dagger.android.support.AndroidSupportInjectionModule
 import me.moallemi.sixt.app.SixtApplication
 import me.moallemi.sixt.di.module.ApiModule
 import me.moallemi.sixt.di.module.AppModule
+import me.moallemi.sixt.di.module.BrowseModule
 import me.moallemi.sixt.di.module.NetworkModule
+import me.moallemi.sixt.di.module.ViewModelFactoryModule
 import me.moallemi.sixt.di.scope.AppScope
 
 @Component(
@@ -14,7 +16,9 @@ import me.moallemi.sixt.di.scope.AppScope
         AndroidSupportInjectionModule::class,
         ApiModule::class,
         AppModule::class,
-        NetworkModule::class
+        BrowseModule::class,
+        NetworkModule::class,
+        ViewModelFactoryModule::class
     ]
 )
 @AppScope

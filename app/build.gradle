@@ -25,6 +25,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
+    implementation project(':domain')
+    implementation project(':data')
     implementation project(':remote')
 
     implementation "androidx.appcompat:appcompat:$libraries.appCompat"
@@ -36,6 +38,8 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$libraries.dagger"
     implementation "com.google.dagger:dagger-android-support:$libraries.dagger"
     kapt "com.google.dagger:dagger-android-processor:$libraries.dagger"
+
+    implementation "io.reactivex.rxjava2:rxandroid:$libraries.rxAndroid"
 
     testImplementation "junit:junit:$testLibraries.junit"
     androidTestImplementation "androidx.test:runner:$testLibraries.androidXTestRunner"

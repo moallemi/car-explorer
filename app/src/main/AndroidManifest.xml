@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="me.moallemi.sixt">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".app.SixtApplication"
         android:allowBackup="true"
