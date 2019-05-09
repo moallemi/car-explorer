@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sixt</string>
+    <string name="app_name">Car Explorer</string>
     <string name="data_not_found">No Data</string>
     <string name="location_rationale">In order to use map we need location access</string>
     <string name="ok">Ok</string>

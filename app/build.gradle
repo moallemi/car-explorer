@@ -6,7 +6,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion buildVersions.compileSdkVersion
     defaultConfig {
-        applicationId "me.moallemi.sixt"
+        applicationId "me.moallemi.carexplorer"
         minSdkVersion buildVersions.minSdkVersion
         targetSdkVersion buildVersions.targetSdkVersion
         versionCode 1
@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         manifestPlaceholders = [
-                google_maps_api_key: sixt_google_maps_api_key
+                google_maps_api_key: car_explorer_google_maps_api_key
         ]
     }
     buildTypes {
