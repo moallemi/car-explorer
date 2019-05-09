@@ -25,6 +25,8 @@ import me.moallemi.carexplorer.ui.browse.list.BrowseViewModel
 import pub.devrel.easypermissions.AfterPermissionGranted
 import pub.devrel.easypermissions.EasyPermissions
 import pub.devrel.easypermissions.PermissionRequest
+import java.io.IOException
+import java.net.UnknownHostException
 
 class BrowseMapFragment : BaseFragment() {
 
@@ -114,10 +116,12 @@ class BrowseMapFragment : BaseFragment() {
     }
 
     private fun hideErrorView() {
+        mapView.visibility = View.VISIBLE
         errorView.visibility = View.GONE
     }
 
     private fun hideEmptyView() {
+        mapView.visibility = View.VISIBLE
         emptyView.visibility = View.GONE
     }
 
@@ -162,15 +166,22 @@ class BrowseMapFragment : BaseFragment() {
     private fun handleError(failure: Throwable) {
         hideLoading()
         hideEmptyView()
-        showErrorView()
+        showErrorView(failure)
         // TODO showSnackBar(failure.message)
     }
 
     private fun showEmptyView() {
+        mapView.visibility = View.GONE
         emptyView.visibility = View.VISIBLE
     }
 
-    private fun showErrorView() {
+    private fun showErrorView(failure: Throwable) {
+        if (failure is UnknownHostException || failure is IOException) {
+            errorView.setImageResource(R.drawable.ic_cloud_off_black_24dp)
+        } else {
+            errorView.setImageResource(R.drawable.ic_error_black_24dp)
+        }
+        mapView.visibility = View.GONE
         errorView.visibility = View.VISIBLE
     }
 

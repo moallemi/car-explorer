@@ -13,6 +13,8 @@ import me.moallemi.carexplorer.extension.observe
 import me.moallemi.carexplorer.model.Resource
 import me.moallemi.carexplorer.model.ResourceState
 import me.moallemi.carexplorer.ui.base.BaseFragment
+import java.io.IOException
+import java.net.UnknownHostException
 
 class BrowseListFragment : BaseFragment() {
 
@@ -85,7 +87,7 @@ class BrowseListFragment : BaseFragment() {
     private fun handleError(failure: Throwable) {
         hideLoading()
         hideEmptyView()
-        showErrorView()
+        showErrorView(failure)
         // TODO showSnackBar(failure.message)
     }
 
@@ -93,7 +95,12 @@ class BrowseListFragment : BaseFragment() {
         emptyView.visibility = View.VISIBLE
     }
 
-    private fun showErrorView() {
+    private fun showErrorView(failure: Throwable) {
+        if (failure is UnknownHostException || failure is IOException) {
+            errorView.setImageResource(R.drawable.ic_cloud_off_black_24dp)
+        } else {
+            errorView.setImageResource(R.drawable.ic_error_black_24dp)
+        }
         errorView.visibility = View.VISIBLE
     }
 
