@@ -1,6 +1,9 @@
 # Car Explorer
 A sample app illustrating Android development best practices with Android Jetpack.
 
+
+<a href='https://travis-ci.org/moallemi/car-explorer/builds'><img src='https://travis-ci.org/moallemi/car-explorer.svg?branch=master'></a>
+
 Getting Started
 ---------------
 This project uses the Gradle build system. To build this project, use the
